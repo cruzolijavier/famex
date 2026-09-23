@@ -3,6 +3,10 @@
    the 1st column always stays on one line. */
 .fit-table {
     width: auto;
+    table-layout: auto;
+}
+.fit-table col {
+    width: auto !important;
 }
 .fit-table td:nth-child(1),
 .fit-table th:nth-child(1) {

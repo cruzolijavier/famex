@@ -6,7 +6,7 @@ Reference for CLI, Python API, and backends.
 
 1. [Core Concepts](#core-concepts)
 2. [Installation](#installation)
-3. [Command Line Interface](#command-line-interface)
+3. [CLI Reference](#cli-reference)
 4. [Python API](#python-api)
 5. [Backend Guide](#backend-guide)
 6. [Examples](#examples)
@@ -66,11 +66,11 @@ pip install -e ".[dev,uma]"
 
 See [README.md](https://github.com/rlaplaza-lab/famex#readme) for the full backend table.
 
-**Note**: Python 3.10+ required. UMA and MACE conflict on `e3nn` versions, use separate conda environments.
+**Note**: Python 3.10+ required. See [Dependency Conflicts](#dependency-conflicts) for UMA/MACE environment separation.
 
-**Default backend**: CLI and `Explorer` default to `uma` with model `uma-s-1p2`. For a conflict-free quick start, pass `--backend aimnet2` or install only `torch`.
+**Default backend**: CLI and `Explorer` default to `uma` (see [Default models](#default-models)). For a conflict-free quick start, pass `--backend aimnet2` or install only `torch`.
 
-## Command Line Interface
+## CLI Reference
 
 ### Global Options & Output Files
 
@@ -130,7 +130,7 @@ All commands support these common options:
   - Force use of finite difference hessians for TS optimizers and frequency calculations
 ```
 
-Output files follow the pattern `{input}.{target}.{strategy}.xyz`, where `target` is `opt` (minima), `ts`, or `path`:
+Output files follow the pattern `{input}.{target}.{strategy}.xyz`:
 
 - `{input}.opt.local.xyz`, `{input}.opt.interpolate.xyz`
 - `{input}.ts.local.xyz`, `{input}.ts.interpolate.xyz`, `{input}.ts.gsm.xyz`
@@ -368,9 +368,7 @@ explorer = Explorer(
 )
 ```
 
-**Targets:** `minima`, `ts`, `path`
-
-**Strategies:** `local`, `interpolate`, `neb`, `cineb`, `irc`, `growing_string` (see [Core Concepts](#core-concepts))
+**Targets/Strategies:** see [Core Concepts](#core-concepts)
 
 **Optimizers:** `default` (auto-selects), first-order (`lbfgs`, `bfgs`, `fire`), second-order (`sella`, `trust-krylov`, `trust-ncg`, `trust-exact`, `newton-cg`, `rfo`)
 
@@ -437,7 +435,7 @@ When `--model-name` / `model_name` is omitted:
 
 For **TBLite**, pass the xTB method via `--model-name` (e.g. `--model-name GFN2-xTB`); the registry maps this to the calculator `method` parameter.
 
-Charge and spin default to `0` and `1` via `--default-charge` / `--default-spin` (or `Explorer` kwargs). UMA and related backends read `atoms.info["charge"]` and `atoms.info["spin"]` when set.
+UMA and related backends also read `atoms.info["charge"]` and `atoms.info["spin"]` when set, overriding `--default-charge` / `--default-spin`.
 
 ## Backend Guide
 
@@ -455,7 +453,7 @@ Charge and spin default to `0` and `1` via `--default-charge` / `--default-spin`
   - No conflicts, fast
 * - `uma`
   - `pip install "fairchem-core>=2.21.0"` or `pip install famex[uma]`
-  - Materials science (default: uma-s-1p2)
+  - Materials science
   - Conflicts with MACE
 * - `mace`
   - `pip install mace-torch`
@@ -522,8 +520,6 @@ conda activate famex-mace && pip install famex mace-torch
   - Cubic spline interpolation
   - Smooth pathways
 ```
-
-Usage: `famex path --strategy neb reactant.xyz product.xyz --interp idpp`
 
 ## Examples
 
