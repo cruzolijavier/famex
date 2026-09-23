@@ -13,11 +13,6 @@ Reference for CLI, Python API, and backends.
 
 ## Core Concepts
 
-- **Target**: `minima`, `ts`, `path`
-- **Strategy**: `local`, `interpolate`, `neb`, `cineb`, `irc`, `growing_string`
-
-### Target/Strategy Matrix
-
 ```{list-table}
 :class: fit-table nowrap-col2
 :header-rows: 1
@@ -77,7 +72,7 @@ See [README.md](https://github.com/rlaplaza-lab/famex#readme) for the full backe
 
 ## Command Line Interface
 
-### Global Options
+### Global Options & Output Files
 
 All commands support these common options:
 
@@ -134,6 +129,12 @@ All commands support these common options:
   - `False`
   - Force use of finite difference hessians for TS optimizers and frequency calculations
 ```
+
+Output files follow the pattern `{input}.{target}.{strategy}.xyz`, where `target` is `opt` (minima), `ts`, or `path`:
+
+- `{input}.opt.local.xyz`, `{input}.opt.interpolate.xyz`
+- `{input}.ts.local.xyz`, `{input}.ts.interpolate.xyz`, `{input}.ts.gsm.xyz`
+- `{input}.path.interpolate.xyz`, `{input}.path.neb.xyz`, `{input}.path.cineb.xyz`, `{input}.path.irc.xyz`
 
 ### Minima Optimization
 
@@ -336,14 +337,6 @@ famex path --strategy cineb reactant.xyz product.xyz
 famex path --strategy irc ts.xyz --direction both
 ```
 
-### Output Files
-
-Output files follow the pattern `{input}.{target}.{strategy}.xyz`, where `target` is `opt` (minima), `ts`, or `path`:
-
-- `{input}.opt.local.xyz`, `{input}.opt.interpolate.xyz`
-- `{input}.ts.local.xyz`, `{input}.ts.interpolate.xyz`, `{input}.ts.gsm.xyz`
-- `{input}.path.interpolate.xyz`, `{input}.path.neb.xyz`, `{input}.path.cineb.xyz`, `{input}.path.irc.xyz`
-
 ### Cache Management
 
 Manages the on-disk model cache (primarily AIMNet2 downloads). Calculator instances are cached separately in memory during a session.
@@ -377,7 +370,7 @@ explorer = Explorer(
 
 **Targets:** `minima`, `ts`, `path`
 
-**Strategies:** `local`, `interpolate`, `neb`, `cineb`, `irc`, `growing_string` (see [Target/Strategy Matrix](#targetstrategy-matrix))
+**Strategies:** `local`, `interpolate`, `neb`, `cineb`, `irc`, `growing_string` (see [Core Concepts](#core-concepts))
 
 **Optimizers:** `default` (auto-selects), first-order (`lbfgs`, `bfgs`, `fire`), second-order (`sella`, `trust-krylov`, `trust-ncg`, `trust-exact`, `newton-cg`, `rfo`)
 
