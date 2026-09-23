@@ -45,7 +45,7 @@ pip install famex[uma]
 pip install -e ".[dev,uma]"
 ```
 
-See [README.md](../README.md) for the full backend table.
+See [README.md](https://github.com/rlaplaza-lab/famex#readme) for the full backend table.
 
 > **Note**: Python 3.10+ required. UMA and MACE conflict on `e3nn` versions — use separate conda environments.
 
@@ -378,7 +378,7 @@ Usage: `famex path --strategy neb reactant.xyz product.xyz --interp idpp`
 
 ## Examples
 
-See [`examples/README.md`](../examples/README.md) for the full catalog of demos and benchmarks (`cli_demo.py`, `irc_demo.py`, `timing_benchmark.py`, `bh28_benchmark/`, `zimmermann93_benchmark/`, and others).
+See [`examples/README.md`](https://github.com/rlaplaza-lab/famex/tree/main/examples) for the full catalog of demos and benchmarks (`cli_demo.py`, `irc_demo.py`, `timing_benchmark.py`, `bh28_benchmark/`, `zimmermann93_benchmark/`, and others).
 
 ---
 

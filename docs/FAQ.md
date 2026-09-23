@@ -26,7 +26,7 @@ Common questions about FAMEX usage, installation, and troubleshooting.
 
 ### Q: Backend not available after installation?
 
-**A:** Install backend dependencies. UMA: `pip install famex[uma]` or `pip install "fairchem-core>=2.21.0"`. Other backends: see [README](../README.md) and [User Guide](USER_GUIDE.md#backend-guide).
+**A:** Install backend dependencies. UMA: `pip install famex[uma]` or `pip install "fairchem-core>=2.21.0"`. Other backends: see [README](https://github.com/rlaplaza-lab/famex#readme) and [User Guide](USER_GUIDE.md#backend-guide).
 
 ## Using FAMEX
 
@@ -98,13 +98,13 @@ Supported types include `fix`, `harmonic_position`, `harmonic_bond`, `harmonic_a
 
 ### Q: Which backend is fastest?
 
-**A:** Depends on system size, hardware, and task. AIMNet2 is typically fast for small organic molecules; UMA is the default general-purpose MLIP. Profile your workload with [`examples/timing_benchmark.py`](../examples/timing_benchmark.py).
+**A:** Depends on system size, hardware, and task. AIMNet2 is typically fast for small organic molecules; UMA is the default general-purpose MLIP. Profile your workload with [`examples/timing_benchmark.py`](https://github.com/rlaplaza-lab/famex/blob/main/examples/timing_benchmark.py).
 
 ## Getting Help
 
 ### Q: Where can I get help?
 
-**A:** [User Guide](USER_GUIDE.md), [Tutorials](TUTORIALS.md), [examples](../examples/README.md), or [GitHub Issues](https://github.com/rlaplaza-lab/famex/issues).
+**A:** [User Guide](USER_GUIDE.md), [Tutorials](TUTORIALS.md), [examples](https://github.com/rlaplaza-lab/famex/tree/main/examples), or [GitHub Issues](https://github.com/rlaplaza-lab/famex/issues).
 
 ### Q: How do I report a bug?
 
@@ -112,7 +112,7 @@ Supported types include `fix`, `harmonic_position`, `harmonic_bond`, `harmonic_a
 
 ### Q: Where can I find examples?
 
-**A:** See [`examples/README.md`](../examples/README.md). Quick start: `python examples/cli_demo.py` from the repo root.
+**A:** See [`examples/README.md`](https://github.com/rlaplaza-lab/famex/tree/main/examples). Quick start: `python examples/cli_demo.py` from the repo root.
 
 ---
 

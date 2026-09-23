@@ -195,7 +195,7 @@ result = explorer.run(npoints=11)
 explorer.save_trajectory(result.get("trajectory", result["optimized_atoms"]), "neb_path.xyz")
 ```
 
-More examples: [`examples/README.md`](../examples/README.md).
+More examples: [`examples/README.md`](https://github.com/rlaplaza-lab/famex/tree/main/examples).
 
 ---
 

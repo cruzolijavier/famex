@@ -36,6 +36,11 @@ dependencies = [
 # ML backends must be installed separately - see README for details
 uma = ["fairchem-core>=2.21.0"]
 pet = ["upet"]
+docs = [
+    "sphinx>=7.0",
+    "myst-parser>=2.0",
+    "sphinx-rtd-theme>=2.0",
+]
 dev = [
     "pytest>=7.0.0",
     "pytest-cov>=4.0.0",
