@@ -13,8 +13,8 @@ Reference for CLI, Python API, and backends.
 
 ## Core Concepts
 
-- **Target**: What you want (`minima`, `ts`, `path`)
-- **Strategy**: How to get there (`local`, `interpolate`, `neb`, `cineb`, `irc`, `growing_string`)
+- **Target**: `minima`, `ts`, `path`
+- **Strategy**: `local`, `interpolate`, `neb`, `cineb`, `irc`, `growing_string`
 
 ### Target/Strategy Matrix
 
@@ -62,25 +62,61 @@ See [README.md](https://github.com/rlaplaza-lab/famex#readme) for the full backe
 
 All commands support these common options:
 
-| Option | Default | Description |
-|--------|---------|-------------|
-| `--backend` | `uma` | Backend: uma\|aimnet2\|mace\|orb\|so3lr\|tblite\|pet\|mock |
-| `--model-name` | backend default | Override model (see [Default models](#default-models) when omitted) |
-| `--model-path` | `None` | Path to model file (if applicable) |
-| `--device` | `None` | Device: cpu\|cuda |
-| `--default-charge` | `0` | Default molecular charge |
-| `--default-spin` | `1` | Default spin multiplicity |
-| `--local-optimizer` | `default` | Local optimizer: default\|lbfgs\|bfgs\|fire\|sella\|trust-krylov\|trust-ncg\|trust-exact\|newton-cg\|rfo (default=auto-select based on target) |
-| `--optimizer-kw` | `None` | Optimizer kwargs as key=value, repeatable |
-| `--ts-kw` | `None` | TS optimizer kwargs as key=value, repeatable |
-| `--constraints` | `None` | Constraints spec string; e.g., `'fix 0,1; harmonic_bond 2,3 k=5.0; fixinternals_bond 4,5 value=1.25'` |
-| `--verbose`, `-v` | `1` | Verbosity level: -v=quiet, -vv=normal, -vvv=debug |
-| `--temperature` | `298.15` | Temperature in Kelvin for thermodynamic calculations |
-| `--dry-run` | `False` | Validate inputs and show strategy selection without running |
-| `--freq`, `--frequencies` | `False` | Perform frequency analysis after optimization (includes thermodynamic properties) |
-| `--force-finite-diff-hessian` | `False` | Force use of finite difference hessians for TS optimizers and frequency calculations |
+```{list-table}
+:widths: 25 20 55
+:header-rows: 1
 
-### famex minima - Minima Optimization
+* - Option
+  - Default
+  - Description
+* - `--backend`
+  - `uma`
+  - Backend: uma\|aimnet2\|mace\|orb\|so3lr\|tblite\|pet\|mock
+* - `--model-name`
+  - Depends on backend
+  - Override the default model for the selected backend (see [Default models](#default-models))
+* - `--model-path`
+  - `None`
+  - Path to model file (if applicable)
+* - `--device`
+  - `None`
+  - Device: cpu / cuda
+* - `--default-charge`
+  - `0`
+  - Default molecular charge
+* - `--default-spin`
+  - `1`
+  - Default spin multiplicity
+* - `--local-optimizer`
+  - `default`
+  - Local optimizer: default\|lbfgs\|bfgs\|fire\|sella\|trust-krylov\|trust-ncg\|trust-exact\|newton-cg\|rfo (default=auto-select based on target)
+* - `--optimizer-kw`
+  - `None`
+  - Optimizer kwargs as key=value, repeatable
+* - `--ts-kw`
+  - `None`
+  - TS optimizer kwargs as key=value, repeatable
+* - `--constraints`
+  - `None`
+  - Constraints spec string; e.g., `'fix 0,1; harmonic_bond 2,3 k=5.0; fixinternals_bond 4,5 value=1.25'`
+* - `--verbose`, `-v`
+  - quiet
+  - Verbosity level (repeat -v to increase): no flag = quiet (0), -v = normal (1), -vv = debug (2)
+* - `--temperature`
+  - `298.15`
+  - Temperature in Kelvin for thermodynamic calculations
+* - `--dry-run`
+  - `False`
+  - Validate inputs and show strategy selection without running
+* - `--freq`, `--frequencies`
+  - `False`
+  - Perform frequency analysis after optimization (includes thermodynamic properties)
+* - `--force-finite-diff-hessian`
+  - `False`
+  - Force use of finite difference hessians for TS optimizers and frequency calculations
+```
+
+### Minima Optimization
 
 Optimize molecular structures to find energy minima.
 
@@ -90,23 +126,40 @@ Optimize molecular structures to find energy minima.
 famex minima --strategy {local,interpolate} INPUT [OPTIONS]
 ```
 
-#### Arguments
-
-| Argument | Type | Description |
-|----------|------|-------------|
-| `INPUT` | Path | Input XYZ file (required) |
-
 #### Options
 
-| Option | Default | Description |
-|--------|---------|-------------|
-| `--strategy` | `local` | Optimization strategy: local\|interpolate |
-| `--product` | `None` | Product XYZ for interpolate strategy |
-| `--output` | Auto | Output optimized XYZ path |
-| `--fmax` | `0.05` | Convergence threshold |
-| `--steps` | `1000` | Max optimization steps |
-| `--npoints` | `11` | Number of interpolation points (interpolate strategy only) |
-| `--interp` | `geodesic` | Interpolation method: linear\|geodesic\|idpp\|quadratic\|spline |
+```{list-table}
+:widths: 25 20 55
+:header-rows: 1
+
+* - Option
+  - Default
+  - Description
+* - `INPUT`
+  - required
+  - Input XYZ file (positional)
+* - `--strategy`
+  - `local`
+  - Optimization strategy: local\|interpolate
+* - `--product`
+  - `None`
+  - Product XYZ for interpolate strategy
+* - `--output`
+  - Auto
+  - Output optimized XYZ path
+* - `--fmax`
+  - `0.05`
+  - Convergence threshold
+* - `--steps`
+  - `1000`
+  - Max optimization steps
+* - `--npoints`
+  - `11`
+  - Number of interpolation points (interpolate strategy only)
+* - `--interp`
+  - `geodesic`
+  - Interpolation method: linear\|geodesic\|idpp\|quadratic\|spline
+```
 
 #### Examples
 
@@ -132,7 +185,7 @@ famex minima --strategy local molecule.xyz --dry-run
 - Local optimization: `{input}.opt.local.xyz`
 - Interpolate optimization: `{input}.opt.interpolate.xyz`
 
-### famex ts - Transition State Optimization
+### Transition State Optimization
 
 Find and optimize transition state structures.
 
@@ -142,27 +195,52 @@ Find and optimize transition state structures.
 famex ts --strategy {local,interpolate,growing_string} INPUT [OPTIONS]
 ```
 
-#### Arguments
-
-| Argument | Type | Description |
-|----------|------|-------------|
-| `INPUT` | Path | Input XYZ file (required) |
-
 #### Options
 
-| Option | Default | Description |
-|--------|---------|-------------|
-| `--strategy` | `local` | Optimization strategy: local\|interpolate\|growing_string |
-| `--product` | `None` | Product XYZ for interpolate/growing_string strategies |
-| `--output` | Auto | Output TS XYZ path |
-| `--fmax` | `0.05` | Convergence threshold |
-| `--steps` | `1000` | Max optimization steps |
-| `--npoints` | `11` | Number of interpolation points (interpolate/growing_string strategies only) |
-| `--interp` | `geodesic` | Interpolation method (interpolate strategy only) |
-| `--max-images` | `100` | Maximum number of images (growing_string strategy only) |
-| `--distance-threshold` | `0.1` | Distance threshold for convergence (growing_string strategy only) |
-| `--step-size` | `0.1` | Step size for growing string method (growing_string strategy only) |
-| `--require-ts/--allow-ts` | `--allow-ts` | Require a validated first-order saddle (raises an error if GSM/refinement fails) |
+```{list-table}
+:widths: 25 20 55
+:header-rows: 1
+
+* - Option
+  - Default
+  - Description
+* - `INPUT`
+  - required
+  - Input XYZ file (positional)
+* - `--strategy`
+  - `local`
+  - Optimization strategy: local\|interpolate\|growing_string
+* - `--product`
+  - `None`
+  - Product XYZ for interpolate/growing_string strategies
+* - `--output`
+  - Auto
+  - Output TS XYZ path
+* - `--fmax`
+  - `0.05`
+  - Convergence threshold
+* - `--steps`
+  - `1000`
+  - Max optimization steps
+* - `--npoints`
+  - `11`
+  - Number of interpolation points (interpolate/growing_string strategies only)
+* - `--interp`
+  - `geodesic`
+  - Interpolation method (interpolate strategy only)
+* - `--max-images`
+  - `100`
+  - Maximum number of images (growing_string strategy only)
+* - `--distance-threshold`
+  - `0.1`
+  - Distance threshold for convergence (growing_string strategy only)
+* - `--step-size`
+  - `0.1`
+  - Step size for growing string method (growing_string strategy only)
+* - `--require-ts/--allow-ts`
+  - `--allow-ts`
+  - Require a validated first-order saddle (raises an error if GSM/refinement fails)
+```
 
 #### Examples
 
@@ -198,7 +276,7 @@ famex ts --strategy interpolate reactant.xyz --product product.xyz --freq
 - Interpolated TS: `{input}.ts.interpolate.xyz`
 - Growing string TS: `{input}.ts.gsm.xyz`
 
-### famex path - Reaction Path Optimization
+### Reaction Path Optimization
 
 Generate and optimize reaction pathways.
 
@@ -208,25 +286,46 @@ Generate and optimize reaction pathways.
 famex path --strategy {interpolate,neb,cineb,irc} STRUCTURES... [OPTIONS]
 ```
 
-#### Arguments
-
-| Argument | Type | Description |
-|----------|------|-------------|
-| `STRUCTURES...` | Path(s) | Structure file(s) (required). Can be:<br>- Multiple files: `reactant.xyz product.xyz [intermediate.xyz ...]`<br>- Single multi-frame XYZ: all frames used as path guess<br>- Single single-frame XYZ: for IRC strategy |
-
 #### Options
 
-| Option | Default | Description |
-|--------|---------|-------------|
-| `--strategy` | `neb` | Path optimization strategy: interpolate\|neb\|cineb\|irc |
-| `--output` | Auto | Output trajectory XYZ path |
-| `--fmax` | `0.05` | Convergence threshold |
-| `--steps` | `1000` | Max optimization steps |
-| `--npoints` | `11` | Number of images in path |
-| `--interp` | `geodesic` | Initial interpolation method |
-| `--spring-constant` | `0.5` | Spring constant for NEB/CI-NEB |
-| `--step-size` | `0.1` | IRC step size (IRC strategy only) |
-| `--direction` | `both` | Direction: forward\|backward\|both (IRC strategy only) |
+```{list-table}
+:widths: 25 20 55
+:header-rows: 1
+
+* - Option
+  - Default
+  - Description
+* - `STRUCTURES...`
+  - required
+  - Structure file(s) (positional). Can be: multiple files (`reactant.xyz product.xyz [intermediate.xyz ...]`), a single multi-frame XYZ (all frames used as path guess), or a single single-frame XYZ (for IRC strategy)
+* - `--strategy`
+  - `neb`
+  - Path optimization strategy: interpolate\|neb\|cineb\|irc
+* - `--output`
+  - Auto
+  - Output trajectory XYZ path
+* - `--fmax`
+  - `0.05`
+  - Convergence threshold
+* - `--steps`
+  - `1000`
+  - Max optimization steps
+* - `--npoints`
+  - `11`
+  - Number of images in path
+* - `--interp`
+  - `geodesic`
+  - Initial interpolation method
+* - `--spring-constant`
+  - `0.5`
+  - Spring constant for NEB/CI-NEB
+* - `--step-size`
+  - `0.1`
+  - IRC step size (IRC strategy only)
+* - `--direction`
+  - `both`
+  - Direction: forward\|backward\|both (IRC strategy only)
+```
 
 #### Examples
 
@@ -254,7 +353,7 @@ famex path --strategy irc ts.xyz --direction both
 - CI-NEB: `{input}.path.cineb.xyz`
 - IRC: `{input}.path.irc.xyz`
 
-### famex cache - Cache Management
+### Cache Management
 
 Manages the on-disk model cache (primarily AIMNet2 downloads). Calculator instances are cached separately in memory during a session.
 
