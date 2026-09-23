@@ -63,7 +63,7 @@ See [README.md](https://github.com/rlaplaza-lab/famex#readme) for the full backe
 All commands support these common options:
 
 ```{list-table}
-:widths: 25 20 55
+:class: option-table
 :header-rows: 1
 
 * - Option
@@ -129,7 +129,7 @@ famex minima --strategy {local,interpolate} INPUT [OPTIONS]
 #### Options
 
 ```{list-table}
-:widths: 25 20 55
+:class: option-table
 :header-rows: 1
 
 * - Option
@@ -198,7 +198,7 @@ famex ts --strategy {local,interpolate,growing_string} INPUT [OPTIONS]
 #### Options
 
 ```{list-table}
-:widths: 25 20 55
+:class: option-table
 :header-rows: 1
 
 * - Option
@@ -289,7 +289,7 @@ famex path --strategy {interpolate,neb,cineb,irc} STRUCTURES... [OPTIONS]
 #### Options
 
 ```{list-table}
-:widths: 25 20 55
+:class: option-table
 :header-rows: 1
 
 * - Option

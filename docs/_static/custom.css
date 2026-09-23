@@ -1,0 +1,11 @@
+/* Option/Default/Description tables in USER_GUIDE.md (class="option-table"):
+   size the table to its content and keep Option/Default on one line. */
+.option-table {
+    width: auto;
+}
+.option-table td:nth-child(1),
+.option-table th:nth-child(1),
+.option-table td:nth-child(2),
+.option-table th:nth-child(2) {
+    white-space: nowrap;
+}
