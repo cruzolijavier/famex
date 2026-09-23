@@ -71,16 +71,11 @@ pip install -e ".[dev,uma]"
 
 See [README.md](https://github.com/rlaplaza-lab/famex#readme) for the full backend table.
 
-> **Note**: Python 3.10+ required. UMA and MACE conflict on `e3nn` versions — use separate conda environments.
+**Note**: Python 3.10+ required. UMA and MACE conflict on `e3nn` versions, use separate conda environments.
 
-> **Default backend**: CLI and `Explorer` default to `uma` with model `uma-s-1p2`. For a conflict-free quick start, pass `--backend aimnet2` or install only `torch`.
+**Default backend**: CLI and `Explorer` default to `uma` with model `uma-s-1p2`. For a conflict-free quick start, pass `--backend aimnet2` or install only `torch`.
 
 ## Command Line Interface
-
-- `famex minima` - Minima optimization (outputs single structure)
-- `famex ts` - Transition state optimization (outputs single TS)
-- `famex path` - Reaction path optimization (outputs trajectories)
-- `famex cache` - Cache management
 
 ### Global Options
 
@@ -144,12 +139,6 @@ All commands support these common options:
 
 Optimize molecular structures to find energy minima.
 
-#### Usage
-
-```bash
-famex minima --strategy {local,interpolate} INPUT [OPTIONS]
-```
-
 #### Options
 
 ```{list-table}
@@ -204,20 +193,9 @@ famex minima --strategy local molecule.xyz --constraints "fix 0,1,2"
 famex minima --strategy local molecule.xyz --dry-run
 ```
 
-#### Output Files
-
-- Local optimization: `{input}.opt.local.xyz`
-- Interpolate optimization: `{input}.opt.interpolate.xyz`
-
 ### Transition State Optimization
 
 Find and optimize transition state structures.
-
-#### Usage
-
-```bash
-famex ts --strategy {local,interpolate,growing_string} INPUT [OPTIONS]
-```
 
 #### Options
 
@@ -294,21 +272,9 @@ famex ts --strategy growing_string reactant.xyz --product product.xyz --require-
 famex ts --strategy interpolate reactant.xyz --product product.xyz --freq
 ```
 
-#### Output Files
-
-- Local TS: `{input}.ts.local.xyz`
-- Interpolated TS: `{input}.ts.interpolate.xyz`
-- Growing string TS: `{input}.ts.gsm.xyz`
-
 ### Reaction Path Optimization
 
 Generate and optimize reaction pathways.
-
-#### Usage
-
-```bash
-famex path --strategy {interpolate,neb,cineb,irc} STRUCTURES... [OPTIONS]
-```
 
 #### Options
 
@@ -370,12 +336,13 @@ famex path --strategy cineb reactant.xyz product.xyz
 famex path --strategy irc ts.xyz --direction both
 ```
 
-#### Output Files
+### Output Files
 
-- Interpolation: `{input}.path.interpolate.xyz`
-- NEB: `{input}.path.neb.xyz`
-- CI-NEB: `{input}.path.cineb.xyz`
-- IRC: `{input}.path.irc.xyz`
+Output files follow the pattern `{input}.{target}.{strategy}.xyz`, where `target` is `opt` (minima), `ts`, or `path`:
+
+- `{input}.opt.local.xyz`, `{input}.opt.interpolate.xyz`
+- `{input}.ts.local.xyz`, `{input}.ts.interpolate.xyz`, `{input}.ts.gsm.xyz`
+- `{input}.path.interpolate.xyz`, `{input}.path.neb.xyz`, `{input}.path.cineb.xyz`, `{input}.path.irc.xyz`
 
 ### Cache Management
 
