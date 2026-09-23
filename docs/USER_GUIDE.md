@@ -18,17 +18,41 @@ Reference for CLI, Python API, and backends.
 
 ### Target/Strategy Matrix
 
-| Target | Strategy | Description |
-|--------|----------|-------------|
-| `minima` | `local` | Direct local optimization |
-| `minima` | `interpolate` | Minima from interpolated path |
-| `ts` | `local` | Local TS search |
-| `ts` | `interpolate` | TS guess from interpolation |
-| `ts` | `growing_string` | Growing string method (DE-GSM) |
-| `path` | `neb` | NEB path optimization |
-| `path` | `cineb` | CI-NEB path optimization |
-| `path` | `irc` | IRC path from transition state |
-| `path` | `interpolate` | Generate path only (no optimization) |
+```{list-table}
+:class: fit-table nowrap-col2
+:header-rows: 1
+
+* - Target
+  - Strategy
+  - Description
+* - `minima`
+  - `local`
+  - Direct local optimization
+* - `minima`
+  - `interpolate`
+  - Minima from interpolated path
+* - `ts`
+  - `local`
+  - Local TS search
+* - `ts`
+  - `interpolate`
+  - TS guess from interpolation
+* - `ts`
+  - `growing_string`
+  - Growing string method (DE-GSM)
+* - `path`
+  - `neb`
+  - NEB path optimization
+* - `path`
+  - `cineb`
+  - CI-NEB path optimization
+* - `path`
+  - `irc`
+  - IRC path from transition state
+* - `path`
+  - `interpolate`
+  - Generate path only (no optimization)
+```
 
 ## Installation
 
@@ -63,7 +87,7 @@ See [README.md](https://github.com/rlaplaza-lab/famex#readme) for the full backe
 All commands support these common options:
 
 ```{list-table}
-:class: option-table
+:class: fit-table nowrap-col2
 :header-rows: 1
 
 * - Option
@@ -129,7 +153,7 @@ famex minima --strategy {local,interpolate} INPUT [OPTIONS]
 #### Options
 
 ```{list-table}
-:class: option-table
+:class: fit-table nowrap-col2
 :header-rows: 1
 
 * - Option
@@ -198,7 +222,7 @@ famex ts --strategy {local,interpolate,growing_string} INPUT [OPTIONS]
 #### Options
 
 ```{list-table}
-:class: option-table
+:class: fit-table nowrap-col2
 :header-rows: 1
 
 * - Option
@@ -289,7 +313,7 @@ famex path --strategy {interpolate,neb,cineb,irc} STRUCTURES... [OPTIONS]
 #### Options
 
 ```{list-table}
-:class: option-table
+:class: fit-table nowrap-col2
 :header-rows: 1
 
 * - Option
@@ -413,24 +437,43 @@ explorer.save_trajectory(path, "path.xyz")
 
 Strategy results always include `optimized_atoms` and `strategy`. Common optional keys:
 
-| Key | When present |
-|-----|----------------|
-| `optimized_atoms` | Single `Atoms` (minima/TS) or `list[Atoms]` (path) |
-| `trajectory` | Path strategies (`neb`, `cineb`, `irc`, `interpolate`, `growing_string`) |
-| `converged`, `steps_taken` | After optimization |
-| `frequency_analysis`, `ts_validation` | When `calculate_frequencies=True` or `--freq` |
+```{list-table}
+:class: fit-table
+:header-rows: 1
+
+* - Key
+  - When present
+* - `optimized_atoms`
+  - Single `Atoms` (minima/TS) or `list[Atoms]` (path)
+* - `trajectory`
+  - Path strategies (`neb`, `cineb`, `irc`, `interpolate`, `growing_string`)
+* - `converged`, `steps_taken`
+  - After optimization
+* - `frequency_analysis`, `ts_validation`
+  - When `calculate_frequencies=True` or `--freq`
+```
 
 ### Default models
 
 When `--model-name` / `model_name` is omitted:
 
-| Backend | Default model |
-|---------|---------------|
-| `uma` | `uma-s-1p2` |
-| `aimnet2` | `aimnet2` |
-| `mace` | `mace-omol-0` |
-| `pet` | `pet-mad-s` |
-| `mock` | `mock-model` |
+```{list-table}
+:class: fit-table nowrap-col2
+:header-rows: 1
+
+* - Backend
+  - Default model
+* - `uma`
+  - `uma-s-1p2`
+* - `aimnet2`
+  - `aimnet2`
+* - `mace`
+  - `mace-omol-0`
+* - `pet`
+  - `pet-mad-s`
+* - `mock`
+  - `mock-model`
+```
 
 For **TBLite**, pass the xTB method via `--model-name` (e.g. `--model-name GFN2-xTB`); the registry maps this to the calculator `method` parameter.
 
@@ -438,16 +481,47 @@ Charge and spin default to `0` and `1` via `--default-charge` / `--default-spin`
 
 ## Backend Guide
 
-| Backend | Installation | Best For | Notes |
-|---------|--------------|----------|-------|
-| `aimnet2` | `pip install torch` | Beginners, molecules | No conflicts, fast |
-| `uma` | `pip install "fairchem-core>=2.21.0"` or `pip install famex[uma]` | Materials science (default: uma-s-1p2) | Conflicts with MACE |
-| `mace` | `pip install mace-torch` | High accuracy molecules | Conflicts with UMA |
-| `orb` | `pip install orb-models` | Universal coverage | Molecules and materials |
-| `tblite` | `pip install tblite` | Fast semi-empirical | Quick calculations |
-| `so3lr` | `pip install so3lr` | Research | Custom models |
-| `pet` | `pip install upet` or `pip install famex[pet]` | Universal PET-MAD potential | Python 3.11+ |
-| `mock` | Built-in | Testing | Development only |
+```{list-table}
+:class: fit-table nowrap-col2
+:header-rows: 1
+
+* - Backend
+  - Installation
+  - Best For
+  - Notes
+* - `aimnet2`
+  - `pip install torch`
+  - Beginners, molecules
+  - No conflicts, fast
+* - `uma`
+  - `pip install "fairchem-core>=2.21.0"` or `pip install famex[uma]`
+  - Materials science (default: uma-s-1p2)
+  - Conflicts with MACE
+* - `mace`
+  - `pip install mace-torch`
+  - High accuracy molecules
+  - Conflicts with UMA
+* - `orb`
+  - `pip install orb-models`
+  - Universal coverage
+  - Molecules and materials
+* - `tblite`
+  - `pip install tblite`
+  - Fast semi-empirical
+  - Quick calculations
+* - `so3lr`
+  - `pip install so3lr`
+  - Research
+  - Custom models
+* - `pet`
+  - `pip install upet` or `pip install famex[pet]`
+  - Universal PET-MAD potential
+  - Python 3.11+
+* - `mock`
+  - Built-in
+  - Testing
+  - Development only
+```
 
 ### Dependency Conflicts
 
@@ -465,13 +539,29 @@ conda activate famex-mace && pip install famex mace-torch
 
 ### Interpolation Methods
 
-| Method | Description | Best For |
-|--------|-------------|----------|
-| `geodesic` | Distance-preserving with bond refinement | Default, chemically reasonable |
-| `idpp` | Image-Dependent Pair Potential | Large geometry changes |
-| `linear` | Simple linear interpolation | Quick initial guesses |
-| `quadratic` | Quadratic curve fitting | Known transition region |
-| `spline` | Cubic spline interpolation | Smooth pathways |
+```{list-table}
+:class: fit-table
+:header-rows: 1
+
+* - Method
+  - Description
+  - Best For
+* - `geodesic`
+  - Distance-preserving with bond refinement
+  - Default, chemically reasonable
+* - `idpp`
+  - Image-Dependent Pair Potential
+  - Large geometry changes
+* - `linear`
+  - Simple linear interpolation
+  - Quick initial guesses
+* - `quadratic`
+  - Quadratic curve fitting
+  - Known transition region
+* - `spline`
+  - Cubic spline interpolation
+  - Smooth pathways
+```
 
 Usage: `famex path --strategy neb reactant.xyz product.xyz --interp idpp`
 

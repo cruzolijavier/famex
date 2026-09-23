@@ -1,11 +1,14 @@
-/* Option/Default/Description tables in USER_GUIDE.md (class="option-table"):
-   size the table to its content and keep Option/Default on one line. */
-.option-table {
+/* Tables in USER_GUIDE.md: size to content instead of stretching to 100%.
+   ".nowrap-col2" additionally keeps the 2nd column (e.g. Default) on one line;
+   the 1st column always stays on one line. */
+.fit-table {
     width: auto;
 }
-.option-table td:nth-child(1),
-.option-table th:nth-child(1),
-.option-table td:nth-child(2),
-.option-table th:nth-child(2) {
+.fit-table td:nth-child(1),
+.fit-table th:nth-child(1) {
+    white-space: nowrap;
+}
+.fit-table.nowrap-col2 td:nth-child(2),
+.fit-table.nowrap-col2 th:nth-child(2) {
     white-space: nowrap;
 }
