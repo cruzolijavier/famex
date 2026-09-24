@@ -77,7 +77,8 @@ See [README.md](https://github.com/rlaplaza-lab/famex#readme) for the full backe
 All commands support these common options:
 
 ```{list-table}
-:class: fit-table nowrap-col2
+:class: global-options-table
+:widths: 25 5 70
 :header-rows: 1
 
 * - Option

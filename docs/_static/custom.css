@@ -16,3 +16,14 @@
 .fit-table.nowrap-col2 th:nth-child(2) {
     white-space: nowrap;
 }
+
+/* Global Options & Output Files table: Option column widened, Default column
+   narrowed, using the :widths: proportions set on the list-table directive. */
+.global-options-table {
+    width: 100%;
+    table-layout: fixed;
+}
+.global-options-table td:nth-child(2),
+.global-options-table th:nth-child(2) {
+    white-space: nowrap;
+}
