@@ -2,7 +2,7 @@
 
 Hands-on tutorials for molecular geometry optimization and transition state searches using FAMEX.
 
-> **Defaults:** CLI and `Explorer` use `backend="uma"` and model `uma-s-1p2`. Tutorials below often show `--backend aimnet2` for a minimal `torch`-only install; omit it when using UMA.
+**Defaults:** CLI and `Explorer` use `backend="uma"` and model `uma-s-1p2`. Tutorials below often show `--backend aimnet2` for a minimal `torch`-only install; omit it when using UMA.
 
 ## Table of Contents
 
@@ -142,6 +142,7 @@ explorer.save_trajectory(path, "neb_path.xyz")
 
 ```bash
 famex path --strategy irc ts.xyz --direction both
+# --direction: forward | backward | both (default: both)
 ```
 
 See `examples/irc_demo.py`.
@@ -150,6 +151,7 @@ See `examples/irc_demo.py`.
 
 ```bash
 famex path --strategy interpolate reactant.xyz product.xyz --npoints 15 --interp idpp
+# --interp: linear | geodesic | idpp | quadratic | spline (default: geodesic)
 ```
 
 ## Quick Reference

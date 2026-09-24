@@ -12,43 +12,43 @@ Common questions about FAMEX usage, installation, and troubleshooting.
 
 ## Installation and Setup
 
-### Q: Which backend should I choose?
+### Which backend should I choose?
 
-**A:** FAMEX defaults to **UMA** (`uma-s-1p2`) via `fairchem-core>=2.21.0`. For the simplest install with no `e3nn` conflicts, use **AIMNet2** (`pip install torch`) and pass `--backend aimnet2`. See the [backend table](USER_GUIDE.md#backend-guide) in the User Guide.
+FAMEX defaults to **UMA** (`uma-s-1p2`) via `fairchem-core>=2.21.0`. For the simplest install with no `e3nn` conflicts, use **AIMNet2** (`pip install torch`) and pass `--backend aimnet2`. See the [backend table](USER_GUIDE.md#backend-guide) in the User Guide.
 
-### Q: Can I install multiple backends?
+### Can I install multiple backends?
 
-**A:** Some backends conflict (UMA vs MACE). Use separate conda environments — see [Dependency Conflicts](USER_GUIDE.md#dependency-conflicts) in the User Guide.
+Some backends conflict (UMA vs MACE). Use separate conda environments — see [Dependency Conflicts](USER_GUIDE.md#dependency-conflicts) in the User Guide.
 
-### Q: What Python version do I need?
+### What Python version do I need?
 
-**A:** Python 3.10+ required. The **PET** backend (`pip install famex[pet]`) requires Python 3.11+.
+Python 3.10+ required. The **PET** backend (`pip install famex[pet]`) requires Python 3.11+.
 
-### Q: Backend not available after installation?
+### Backend not available after installation?
 
-**A:** Install backend dependencies. UMA: `pip install famex[uma]` or `pip install "fairchem-core>=2.21.0"`. Other backends: see [README](https://github.com/rlaplaza-lab/famex#readme) and [User Guide](USER_GUIDE.md#backend-guide).
+Install backend dependencies. UMA: `pip install famex[uma]` or `pip install "fairchem-core>=2.21.0"`. Other backends: see [README](https://github.com/rlaplaza-lab/famex#readme) and [User Guide](USER_GUIDE.md#backend-guide).
 
 ## Using FAMEX
 
-### Q: What's the difference between target and strategy?
+### What's the difference between target and strategy?
 
-**A:** See [Core Concepts](USER_GUIDE.md#core-concepts). Target (`minima`, `ts`, `path`) is what you want; strategy (`local`, `interpolate`, `neb`, etc.) is how to get there.
+See [Core Concepts](USER_GUIDE.md#core-concepts). Target (`minima`, `ts`, `path`) is what you want; strategy (`local`, `interpolate`, `neb`, etc.) is how to get there.
 
-### Q: How do I choose convergence criteria?
+### How do I choose convergence criteria?
 
-**A:** See [Convergence](TUTORIALS.md#convergence) in the Tutorials. Quick reference: `--fmax 0.1 --steps 100` (testing), `--fmax 0.05 --steps 1000` (default), `--fmax 0.01 --steps 2000` (high precision).
+See [Convergence](TUTORIALS.md#convergence) in the Tutorials. Quick reference: `--fmax 0.1 --steps 100` (testing), `--fmax 0.05 --steps 1000` (default), `--fmax 0.01 --steps 2000` (high precision).
 
-### Q: What file formats are supported?
+### What file formats are supported?
 
-**A:** All ASE-compatible formats (XYZ, CIF, PDB, VASP, and others supported by ASE I/O).
+All ASE-compatible formats (XYZ, CIF, PDB, VASP, and others supported by ASE I/O).
 
-### Q: How do I specify charge and spin?
+### How do I specify charge and spin?
 
-**A:** CLI: `--default-charge` and `--default-spin`. Python: `Explorer(..., default_charge=0, default_spin=1)`. Values are written to `atoms.info` when missing. Required for consistent UMA/MACE/Orb results on charged or open-shell systems.
+CLI: `--default-charge` and `--default-spin`. Python: `Explorer(..., default_charge=0, default_spin=1)`. Values are written to `atoms.info` when missing. Required for consistent UMA/MACE/Orb results on charged or open-shell systems.
 
-### Q: How do I use constraints?
+### How do I use constraints?
 
-**A:** `--constraints` accepts semicolon-separated specs, for example:
+`--constraints` accepts semicolon-separated specs, for example:
 
 ```bash
 famex minima --strategy local molecule.xyz --constraints "fix 0,1,2"
@@ -59,60 +59,59 @@ Supported types include `fix`, `harmonic_position`, `harmonic_bond`, `harmonic_a
 
 ## Troubleshooting
 
-### Q: Optimization doesn't converge?
+### Optimization doesn't converge?
 
-**A:** Try:
+Try:
 - Increase steps: `--steps 2000`
 - Loosen convergence: `--fmax 0.1`
 - Change optimizer: `--local-optimizer bfgs`
 - Check input structure quality
 
-### Q: Forces too large or unrealistic energies?
+### Forces too large or unrealistic energies?
 
-**A:** Check:
+Check:
 - Backend compatibility with your elements
 - Input structure quality (atoms too close?)
 - Charge/spin settings
 - System size limits
 
-### Q: CUDA out of memory?
+### CUDA out of memory?
 
-**A:** Use CPU (`--device cpu`), reduce system size, or use LBFGS optimizer (`--local-optimizer lbfgs`).
+Use CPU (`--device cpu`), reduce system size, or use LBFGS optimizer (`--local-optimizer lbfgs`).
 
-### Q: Transition state validation issues?
+### Transition state validation issues?
 
-**A:**
 - Multiple imaginary frequencies: poor TS guess — try interpolation, growing string, or `rfo` / `sella`
 - No imaginary frequencies: structure may be a minimum — verify the TS guess
 - Use `--freq` or `calculate_frequencies()`; check `ts_analysis["n_imaginary_frequencies"]`
 
-### Q: UMA and MACE both installed but one fails?
+### UMA and MACE both installed but one fails?
 
-**A:** They require incompatible `e3nn` versions. Use separate conda environments (see [Dependency Conflicts](USER_GUIDE.md#dependency-conflicts)).
+They require incompatible `e3nn` versions. Use separate conda environments (see [Dependency Conflicts](USER_GUIDE.md#dependency-conflicts)).
 
 ## Performance
 
-### Q: How do I speed up calculations?
+### How do I speed up calculations?
 
-**A:** Use GPU (`--device cuda`) when available, or relax `--fmax` / `--steps` while prototyping.
+Use GPU (`--device cuda`) when available, or relax `--fmax` / `--steps` while prototyping.
 
-### Q: Which backend is fastest?
+### Which backend is fastest?
 
-**A:** Depends on system size, hardware, and task. AIMNet2 is typically fast for small organic molecules; UMA is the default general-purpose MLIP. Profile your workload with [`examples/timing_benchmark.py`](https://github.com/rlaplaza-lab/famex/blob/main/examples/timing_benchmark.py).
+Depends on system size, hardware, and task. AIMNet2 is typically fast for small organic molecules; UMA is the default general-purpose MLIP. Profile your workload with [`examples/timing_benchmark.py`](https://github.com/rlaplaza-lab/famex/blob/main/examples/timing_benchmark.py).
 
 ## Getting Help
 
-### Q: Where can I get help?
+### Where can I get help?
 
-**A:** [User Guide](USER_GUIDE.md), [Tutorials](TUTORIALS.md), [examples](https://github.com/rlaplaza-lab/famex/tree/main/examples), or [GitHub Issues](https://github.com/rlaplaza-lab/famex/issues).
+[User Guide](USER_GUIDE.md), [Tutorials](TUTORIALS.md), [examples](https://github.com/rlaplaza-lab/famex/tree/main/examples), or [GitHub Issues](https://github.com/rlaplaza-lab/famex/issues).
 
-### Q: How do I report a bug?
+### How do I report a bug?
 
-**A:** Include `famex --version`, Python version, OS, backend and model name, full error message, and a minimal reproducing example.
+Include `famex --version`, Python version, OS, backend and model name, full error message, and a minimal reproducing example.
 
-### Q: Where can I find examples?
+### Where can I find examples?
 
-**A:** See [`examples/README.md`](https://github.com/rlaplaza-lab/famex/tree/main/examples). Quick start: `python examples/cli_demo.py` from the repo root.
+See [`examples/README.md`](https://github.com/rlaplaza-lab/famex/tree/main/examples). Quick start: `python examples/cli_demo.py` from the repo root.
 
 ---
 
