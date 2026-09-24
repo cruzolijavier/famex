@@ -18,12 +18,10 @@
 }
 
 /* Global Options & Output Files table: Option column widened, Default column
-   narrowed, using the :widths: proportions set on the list-table directive. */
+   narrowed, using the :widths: proportions set on the list-table directive.
+   Default and Description wrap onto multiple lines instead of overflowing;
+   the row simply grows taller when that happens. */
 .global-options-table {
     width: 100%;
     table-layout: fixed;
-}
-.global-options-table td:nth-child(2),
-.global-options-table th:nth-child(2) {
-    white-space: nowrap;
 }

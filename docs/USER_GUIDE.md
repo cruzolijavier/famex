@@ -78,7 +78,7 @@ All commands support these common options:
 
 ```{list-table}
 :class: global-options-table
-:widths: 25 5 70
+:widths: 20 10 70
 :header-rows: 1
 
 * - Option
