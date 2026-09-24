@@ -96,53 +96,8 @@ class Explorer:
     - Structure ``charge``/``spin`` attributes override defaults.
     - Use :meth:`list_strategies` to discover available strategies.
     - Calculator creation and caching handled automatically.
-
-    Examples
-    --------
-    >>> # Minima optimization (local is default)
-    >>> explorer = Explorer(atoms, target="minima")
-    >>> result = explorer.run()
-
-    >>> # TS from local search
-    >>> explorer = Explorer(atoms, target="ts", strategy="local")
-    >>> result = explorer.run()
-
-    >>> # TS from interpolated guess between reactant/product
-    >>> explorer = Explorer(atoms=[reactant, product], target="ts", strategy="interpolate")
-    >>> result = explorer.run()
-
-    >>> # Reaction path with NEB
-    >>> explorer = Explorer(atoms=[reactant, product], target="path", strategy="neb")
-    >>> result = explorer.run()
-
-    >>> # Reaction path with CI-NEB
-    >>> explorer = Explorer(atoms=[reactant, product], target="path", strategy="cineb")
-    >>> result = explorer.run()
-
-    >>> # IRC path from transition state
-    >>> explorer = Explorer(atoms=ts_structure, target="path", strategy="irc")
-    >>> result = explorer.run()
-
-    >>> # Generate interpolated path only (no optimization)
-    >>> explorer = Explorer(atoms=[reactant, product], target="path", strategy="interpolate")
-    >>> result = explorer.run(npoints=10)
-
-    Target/Strategy Matrix:
-    ┌──────────┬──────────────────┬─────────────────────────────────┐
-    │ target   │ strategy         │ Description                     │
-    ├──────────┼──────────────────┼─────────────────────────────────┤
-    │ minima   │ local            │ Direct local optimization       │
-    │ minima   │ interpolate      │ Minima from interpolated path   │
-    │ ts       │ local            │ Local TS search                 │
-    │ ts       │ interpolate      │ TS guess from interpolation     │
-    │ ts       │ cineb            │ TS guess via CI-NEB             │
-    │ ts       │ growing_string   │ Growing string method (DE-GSM)  │
-    │ path     │ neb              │ NEB path optimization           │
-    │ path     │ cineb            │ CI-NEB path optimization        │
-    │ path     │ irc              │ IRC path from transition state  │
-    │ path     │ interpolate      │ Generate path only (no opt)     │
-    └──────────┴──────────────────┴─────────────────────────────────┘
-
+    - See the `target`/`strategy` matrix in the User Guide's Core Concepts
+      section, and the Tutorials, for usage examples.
     """
 
     # --- Initialization ---

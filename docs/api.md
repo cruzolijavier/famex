@@ -2,13 +2,49 @@
 
 Reference documentation generated from the `famex` package docstrings.
 
+## Quick Reference
+
+Most usage only needs `Explorer` (and, for advanced cases, `Geometry`/`PathManager`).
+Everything else is imported lazily from `famex` and documented in full further down this page.
+
+```{list-table}
+:class: fit-table nowrap-col2
+:header-rows: 1
+
+* - Name
+  - Category
+  - Description
+* - `Explorer`
+  - Core
+  - Main entry point: run minima/TS/path optimizations
+* - `Geometry`
+  - I/O
+  - Structure container returned by `read_geometry`
+* - `PathManager`
+  - I/O
+  - Manages multi-structure trajectory files
+* - `FrequencyAnalysis`
+  - Analysis
+  - Vibrational frequencies and thermodynamic properties
+* - `HessianCalculator`
+  - Analysis
+  - Numerical Hessian construction
+* - `create_calculator`, `calculator_registry`
+  - Backends
+  - Build/look up an ASE calculator for a given backend
+* - `get_available_backends`, `is_backend_available`
+  - Backends
+  - Check which ML potential backends are installed
+* - `FAMEXError`, `BackendError`, `DependencyError`
+  - Errors
+  - Base exception types raised by FAMEX
+```
+
 ## Top-level package
 
 ```{eval-rst}
 .. automodule:: famex
-   :members:
-   :undoc-members:
-   :show-inheritance:
+   :no-members:
 ```
 
 ## Core

@@ -25,3 +25,33 @@
     width: 100%;
     table-layout: fixed;
 }
+
+/* API Reference "Parameters" sections (Napoleon/numpydoc field lists):
+   "Parameters:" on its own line, with each parameter listed below it,
+   flush left, instead of the theme's default indented two-column layout. */
+dl.field-list > dt.field-odd,
+dl.field-list > dt.field-even {
+    display: block;
+    float: none;
+    width: auto;
+    margin: 0;
+    padding: 0;
+}
+dl.field-list > dt.field-odd::after,
+dl.field-list > dt.field-even::after {
+    content: ":";
+}
+dl.field-list > dd.field-odd,
+dl.field-list > dd.field-even {
+    display: block;
+    margin-left: 0;
+    padding-left: 0;
+}
+dl.field-list > dd ul {
+    margin: 0;
+    padding-left: 0;
+    list-style: none;
+}
+dl.field-list > dd ul > li {
+    margin: 0.4em 0;
+}

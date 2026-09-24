@@ -14,19 +14,8 @@ Key Features:
 - Mock calculator for testing without ML dependencies
 - Trajectory saving for complete reaction pathways
 
-Examples
---------
-    Basic geometry optimization:
-    >>> from famex import Explorer
-    >>> explorer = Explorer.from_file("molecule.xyz", backend="aimnet2")
-    >>> results = explorer.run()
-    >>> explorer.save_structure(results['optimized_atoms'], "optimized.xyz")
-
-    Reaction path optimization (NEB/CI-NEB):
-    >>> explorer = Explorer(atoms=[reactant, product], target="path")
-    >>> path = explorer.run(npoints=7)
-    >>> explorer.save_trajectory(path, "reaction_path.xyz")
-
+See the User Guide and Tutorials (docs/USER_GUIDE.md, docs/TUTORIALS.md) for
+usage examples; the main entry point is :class:`~famex.core.explorer.Explorer`.
 """
 
 from __future__ import annotations
