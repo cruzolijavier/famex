@@ -37,10 +37,6 @@ dl.field-list > dt.field-even {
     margin: 0;
     padding: 0;
 }
-dl.field-list > dt.field-odd::after,
-dl.field-list > dt.field-even::after {
-    content: ":";
-}
 dl.field-list > dd.field-odd,
 dl.field-list > dd.field-even {
     display: block;
