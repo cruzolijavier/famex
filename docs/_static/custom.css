@@ -28,20 +28,24 @@
 
 /* API Reference "Parameters" sections (Napoleon/numpydoc field lists):
    "Parameters:" on its own line, with each parameter listed below it,
-   flush left, instead of the theme's default indented two-column layout. */
-dl.field-list > dt.field-odd,
-dl.field-list > dt.field-even {
-    display: block;
-    float: none;
-    width: auto;
-    margin: 0;
-    padding: 0;
+   flush left, instead of the theme's default indented two-column grid layout.
+   sphinx_rtd_theme sets `dl.field-list { display: grid; grid-template-columns:
+   auto minmax(80%,95%); }` via a more specific selector than a plain
+   "dl.field-list" rule, so `!important` is needed here to actually win. */
+.rst-content dl.field-list {
+    display: block !important;
 }
-dl.field-list > dd.field-odd,
-dl.field-list > dd.field-even {
-    display: block;
-    margin-left: 0;
-    padding-left: 0;
+.rst-content dl.field-list > dt {
+    display: block !important;
+    float: none !important;
+    width: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+.rst-content dl.field-list > dd {
+    display: block !important;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
 }
 dl.field-list > dd ul {
     margin: 0;
