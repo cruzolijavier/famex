@@ -298,7 +298,7 @@ class FrequencyAnalysis:
         Returns
         -------
         Tuple[np.ndarray, np.ndarray]
-            frequencies (in cm^-1) and normal mode eigenvectors.
+            frequencies (in cm⁻¹) and normal mode eigenvectors.
             Frequencies are signed real values: negative for imaginary modes.
 
         """
@@ -328,7 +328,7 @@ class FrequencyAnalysis:
         -------
         np.ndarray
             Vibrational frequencies, excluding translational and rotational modes.
-            Signed real values in cm^-1 (negative for imaginary modes).
+            Signed real values in cm⁻¹ (negative for imaginary modes).
 
         """
         # Gather all frequencies
@@ -384,22 +384,25 @@ class FrequencyAnalysis:
         Parameters
         ----------
         threshold : float
-            Minimum frequency magnitude in cm^-1 to consider significant
+            Minimum frequency magnitude in cm⁻¹ to consider significant
 
         Returns
         -------
         dict[str, bool | int | list[float] | str]
             Dictionary with TS verification results containing:
-            - is_transition_state: Whether structure is a TS (bool)
-            - n_imaginary_frequencies: Number of imaginary frequencies (int)
-            - imaginary_frequencies: List of imaginary frequencies (list[float])
-            - n_near_zero_frequencies: Number of near-zero frequencies (int)
-            - all_frequencies: Vibrational frequencies (list[float])
-                Note: This contains vibrational frequencies (trans/rot modes removed).
-                For all frequencies including trans/rot, use the top-level all_frequencies
-                from explorer.calculate_frequencies().
-            - threshold: Threshold used (float)
-            - assessment: Assessment string (str)
+
+            - ``is_transition_state``: Whether structure is a TS (bool)
+            - ``n_imaginary_frequencies``: Number of imaginary frequencies (int)
+            - ``imaginary_frequencies``: List of imaginary frequencies (list[float])
+            - ``n_near_zero_frequencies``: Number of near-zero frequencies (int)
+            - ``all_frequencies``: Vibrational frequencies (list[float])
+
+              Note: This contains vibrational frequencies (trans/rot modes removed).
+              For all frequencies including trans/rot, use the top-level ``all_frequencies``
+              from ``explorer.calculate_frequencies()``.
+
+            - ``threshold``: Threshold used (float)
+            - ``assessment``: Assessment string (str)
 
         """
         frequencies = self.get_frequencies()
@@ -449,28 +452,31 @@ class FrequencyAnalysis:
         Parameters
         ----------
         threshold : float
-            Minimum frequency magnitude in cm^-1 to consider significant
+            Minimum frequency magnitude in cm⁻¹ to consider significant
         small_negative_cutoff : float
-            Maximum negative frequency in cm^-1 to consider as "small negative"
+            Maximum negative frequency in cm⁻¹ to consider as "small negative"
             (likely numerical noise, not a true imaginary frequency)
 
         Returns
         -------
         dict[str, bool | int | list[float] | str]
             Dictionary with minima verification results containing:
-            - is_minimum: Whether structure is a minimum (bool)
-            - n_significant_imaginary_frequencies: Number of significant imaginary frequencies (int)
-            - n_small_negative_frequencies: Number of small negative frequencies (int)
-            - significant_imaginary_frequencies: List of significant imaginary frequencies (list[float])
-            - small_negative_frequencies: List of small negative frequencies (list[float])
-            - n_near_zero_frequencies: Number of near-zero frequencies (int)
-            - all_frequencies: Vibrational frequencies (list[float])
-                Note: This contains vibrational frequencies (trans/rot modes removed).
-                For all frequencies including trans/rot, use the top-level all_frequencies
-                from explorer.calculate_frequencies().
-            - threshold: Threshold used (float)
-            - small_negative_cutoff: Small negative cutoff used (float)
-            - assessment: Assessment string (str)
+
+            - ``is_minimum``: Whether structure is a minimum (bool)
+            - ``n_significant_imaginary_frequencies``: Number of significant imaginary frequencies (int)
+            - ``n_small_negative_frequencies``: Number of small negative frequencies (int)
+            - ``significant_imaginary_frequencies``: List of significant imaginary frequencies (list[float])
+            - ``small_negative_frequencies``: List of small negative frequencies (list[float])
+            - ``n_near_zero_frequencies``: Number of near-zero frequencies (int)
+            - ``all_frequencies``: Vibrational frequencies (list[float])
+
+              Note: This contains vibrational frequencies (trans/rot modes removed).
+              For all frequencies including trans/rot, use the top-level ``all_frequencies``
+              from ``explorer.calculate_frequencies()``.
+
+            - ``threshold``: Threshold used (float)
+            - ``small_negative_cutoff``: Small negative cutoff used (float)
+            - ``assessment``: Assessment string (str)
 
         """
         frequencies = self.get_frequencies()
@@ -582,7 +588,7 @@ class FrequencyAnalysis:
         method : str
             Method for vibrational corrections: 'rrho', 'grimme', or 'truhlar'
         freq_cutoff : float
-            Cutoff frequency in cm^-1 for quasi-harmonic corrections
+            Cutoff frequency in cm⁻¹ for quasi-harmonic corrections
         freq_scale_factor : float
             Frequency scaling factor (default: 1.0)
         rotational_temperatures : array-like, optional
@@ -598,7 +604,7 @@ class FrequencyAnalysis:
         multiplicity : int
             Spin multiplicity 2S+1 (default: 1)
         solvent : str
-            Solvent name (default: 'none' for gas phase)
+            Solvent name (default: "none" for gas phase)
         concentration : float
             Concentration in mol/L
         complete : bool

@@ -470,7 +470,7 @@ def require_any_backend(backends: list[str]) -> list[str] | None:
     """Require that at least one of the specified backends is available.
 
     Usage:
-        require_any_backend(["mace", "uma"])
+    >>> require_any_backend(["mace", "uma"])
     """
     try:
         import pytest

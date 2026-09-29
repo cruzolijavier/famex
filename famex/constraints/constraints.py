@@ -1,6 +1,7 @@
 """Enhanced constraint handling for FAMEX optimizations.
 
 This module provides simplified constraint management with three core types:
+
 1. Fixed Atoms: Exactly fix atom positions (enhanced version of FixAtoms)
 2. Harmonic Constraints: Soft constraints based on initial geometry (bonds, angles, positions)
 3. FixInternals: Select target values for bonds, angles, dihedrals, and bond combinations
@@ -325,7 +326,7 @@ def get_constraint_summary(atoms: Atoms) -> dict[str, Any]:
 
     Parameters
     ----------
-    - atoms: Atoms object with constraints
+    atoms: Atoms object with constraints
 
     Returns
     -------

@@ -81,6 +81,7 @@ Everything else is imported lazily from `famex` and documented in full further d
 .. automodule:: famex.analysis.frequency
    :members:
    :show-inheritance:
+   :exclude-members: ThermodynamicProperties
 
 .. automodule:: famex.analysis.thermodynamics
    :members:

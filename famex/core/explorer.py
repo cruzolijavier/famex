@@ -330,7 +330,7 @@ class Explorer:
         ----------
         runner : callable, optional
             Optional callable to execute directly, bypassing strategy selection.
-        calculate_frequencies : bool, default=False
+        calculate_frequencies : bool, default False
             Whether to perform frequency analysis after optimization.
         cleanup_frequencies : bool, optional
             Whether to run post-optimization Hessian-based frequency cleanup.

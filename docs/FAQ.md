@@ -55,7 +55,7 @@ famex minima --strategy local molecule.xyz --constraints "fix 0,1,2"
 famex minima --strategy local molecule.xyz --constraints "fix 0,1; harmonic_bond 2,3 k=5.0"
 ```
 
-Supported types include `fix`, `harmonic_position`, `harmonic_bond`, `harmonic_angle`, and `fixinternals_bond` / `fixinternals_angle` / `fixinternals_dihedral`. See the [global options table](USER_GUIDE.md#global-options) in the User Guide.
+Supported types include `fix`, `harmonic_position`, `harmonic_bond`, `harmonic_angle`, and `fixinternals_bond` / `fixinternals_angle` / `fixinternals_dihedral`. See the [global options table](USER_GUIDE.md#global-options--output-files) in the User Guide.
 
 ## Troubleshooting
 

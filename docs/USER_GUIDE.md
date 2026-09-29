@@ -85,7 +85,7 @@ All commands support these common options:
   - Description
 * - `--backend`
   - `uma`
-  - Backend: uma\|aimnet2\|mace\|orb\|so3lr\|tblite\|pet\|mock
+  - Backend: `uma`, `aimnet2`, `mace`, `orb`, `so3lr`, `tblite`, `pet`, `mock`
 * - `--model-name`
   - Depends on backend
   - Override the default model for the selected backend (see [Default models](#default-models))
@@ -94,7 +94,7 @@ All commands support these common options:
   - Path to model file (if applicable)
 * - `--device`
   - `None`
-  - Device: cpu / cuda
+  - Device: `cpu`, `cuda`
 * - `--default-charge`
   - `0`
   - Default molecular charge
@@ -103,7 +103,7 @@ All commands support these common options:
   - Default spin multiplicity
 * - `--local-optimizer`
   - `default`
-  - Local optimizer: default\|lbfgs\|bfgs\|fire\|sella\|trust-krylov\|trust-ncg\|trust-exact\|newton-cg\|rfo (default=auto-select based on target)
+  - Local optimizer: `default`, `lbfgs`, `bfgs`, `fire`, `sella`, `trust-krylov`, `trust-ncg`, `trust-exact`, `newton-cg`, `rfo` (`default` auto-selects based on target)
 * - `--optimizer-kw`
   - `None`
   - Optimizer kwargs as key=value, repeatable
@@ -115,7 +115,7 @@ All commands support these common options:
   - Constraints spec string; e.g., `'fix 0,1; harmonic_bond 2,3 k=5.0; fixinternals_bond 4,5 value=1.25'`
 * - `--verbose`, `-v`
   - quiet
-  - Verbosity level (repeat -v to increase): no flag = quiet (0), -v = normal (1), -vv = debug (2)
+  - Verbosity level (repeat `-v` to increase): no flag = quiet (0), `-v` = normal (1), `-vv` = debug (2)
 * - `--temperature`
   - `298.15`
   - Temperature in Kelvin for thermodynamic calculations
@@ -154,7 +154,7 @@ Optimize molecular structures to find energy minima.
   - Input XYZ file (positional)
 * - `--strategy`
   - `local`
-  - Optimization strategy: local\|interpolate
+  - Optimization strategy: `local`, `interpolate`
 * - `--product`
   - `None`
   - Product XYZ for interpolate strategy
@@ -172,7 +172,7 @@ Optimize molecular structures to find energy minima.
   - Number of interpolation points (interpolate strategy only)
 * - `--interp`
   - `geodesic`
-  - Interpolation method: linear\|geodesic\|idpp\|quadratic\|spline
+  - Interpolation method: `linear`, `geodesic`, `idpp`, `quadratic`, `spline`
 ```
 
 #### Examples
@@ -212,7 +212,7 @@ Find and optimize transition state structures.
   - Input XYZ file (positional)
 * - `--strategy`
   - `local`
-  - Optimization strategy: local\|interpolate\|growing_string
+  - Optimization strategy: `local`, `interpolate`, `growing_string`
 * - `--product`
   - `None`
   - Product XYZ for interpolate/growing_string strategies
@@ -291,7 +291,7 @@ Generate and optimize reaction pathways.
   - Structure file(s) (positional). Can be: multiple files (`reactant.xyz product.xyz [intermediate.xyz ...]`), a single multi-frame XYZ (all frames used as path guess), or a single single-frame XYZ (for IRC strategy)
 * - `--strategy`
   - `neb`
-  - Path optimization strategy: interpolate\|neb\|cineb\|irc
+  - Path optimization strategy: `interpolate`, `neb`, `cineb`, `irc`
 * - `--output`
   - Auto
   - Output trajectory XYZ path
@@ -315,7 +315,7 @@ Generate and optimize reaction pathways.
   - IRC step size (IRC strategy only)
 * - `--direction`
   - `both`
-  - Direction: forward\|backward\|both (IRC strategy only)
+  - Direction: `forward`, `backward`, `both` (IRC strategy only)
 ```
 
 #### Examples

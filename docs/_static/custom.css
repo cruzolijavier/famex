@@ -31,6 +31,9 @@
     white-space: normal;
     overflow-wrap: break-word;
 }
+.rst-content code.literal span.pre {
+    white-space: nowrap;
+}
 
 /* CLI option tables in USER_GUIDE.md (Global Options, Minima, TS, Path):
    identical column widths in every table. The Option column is sized to fit
