@@ -245,12 +245,15 @@ def clear_availability_cache() -> None:
 def get_backend_error_message(backend: str) -> str:
     """Get a clear error message for why backend is unavailable.
 
-    Args:
-        backend: Backend name
+    Parameters
+    ----------
+    backend : str
+        Backend name
 
     Returns
     -------
-        str: Human-readable error message with installation instructions
+    str
+        Human-readable error message with installation instructions
 
     """
     reason = get_availability_reason(backend)
@@ -277,12 +280,16 @@ def get_available_backends_with_logging(
 ) -> list[str]:
     """Get list of backends that are actually available in the current environment.
 
-    Args:
-        include_mock: Whether to include the mock backend
-        verbose: Whether to print availability status for each backend
+    Parameters
+    ----------
+    include_mock : bool, default True
+        Whether to include the mock backend
+    verbose : bool, default False
+        Whether to print availability status for each backend
 
     Returns
     -------
+    list[str]
         List of available backend names
 
     """
@@ -314,12 +321,16 @@ def get_available_ml_backends(verbose: bool = False) -> list[str]:
 def filter_available_backends(requested_backends: list[str], verbose: bool = False) -> list[str]:
     """Filter a list of requested backends to only include those that are available.
 
-    Args:
-        requested_backends: List of backend names to check
-        verbose: Whether to print status messages
+    Parameters
+    ----------
+    requested_backends : list[str]
+        List of backend names to check
+    verbose : bool, default False
+        Whether to print status messages
 
     Returns
     -------
+    list[str]
         List of available backends from the requested list
 
     """
@@ -345,11 +356,14 @@ def filter_available_backends(requested_backends: list[str], verbose: bool = Fal
 def validate_backends(requested_backends: list[str]) -> tuple[list[str], list[str]]:
     """Validate a list of requested backends.
 
-    Args:
-        requested_backends: List of backend names to validate
+    Parameters
+    ----------
+    requested_backends : list[str]
+        List of backend names to validate
 
     Returns
     -------
+    tuple[list[str], list[str]]
         Tuple of (available_backends, invalid_backends)
 
     """
@@ -370,16 +384,20 @@ def validate_backends(requested_backends: list[str]) -> tuple[list[str], list[st
 def require_ml_backends(min_count: int = 1) -> list[str]:
     """Require that at least a minimum number of ML backends are available.
 
-    Args:
-        min_count: Minimum number of ML backends required
+    Parameters
+    ----------
+    min_count : int, default 1
+        Minimum number of ML backends required
 
     Returns
     -------
+    list[str]
         List of available ML backends
 
     Raises
     ------
-        SystemExit: If insufficient ML backends are available
+    SystemExit
+        If insufficient ML backends are available
 
     """
     available = get_available_ml_backends()
@@ -424,15 +442,16 @@ def print_backend_summary(backends: list[str], title: str = "Backend Summary") -
 def require_backend(backend: str) -> None:
     """Decorator/function to require a specific backend for a test.
 
-    Usage:
-        @require_backend("mace")
-        def test_something():
-            pass
+    Examples
+    --------
+    >>> @require_backend("mace")
+    ... def test_something():
+    ...     pass
 
-    Or:
-        def test_something():
-            require_backend("mace")
-            # test code here
+    >>> def test_something():
+    ...     require_backend("mace")
+    ...     # test code here
+
     """
     try:
         import pytest
@@ -475,6 +494,7 @@ def get_backend_pairs() -> list[tuple[str, str]]:
 
     Returns
     -------
+    list[tuple[str, str]]
         List of tuples of (backend1, backend2) pairs where both backends are available.
         Currently returns an empty list as there are no defined pairs.
 

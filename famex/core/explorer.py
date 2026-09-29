@@ -30,8 +30,9 @@ class Explorer:
     """Explorer runs optimizations/TS searches on one or more Atoms.
 
     Uses a target/strategy paradigm:
-    - **target**: What you want (minima, ts, path)
-    - **strategy**: How to get there (local, neb, cineb, interpolate, growing_string, irc)
+
+    - ``target``: What you want (minima, ts, path)
+    - ``strategy``: How to get there (local, neb, cineb, interpolate, growing_string, irc)
 
     Parameters
     ----------
@@ -54,38 +55,42 @@ class Explorer:
         Local optimizer for geometry optimization. If "default", auto-selects based
         on target: "sella" for TS searches, "lbfgs" for minima/path optimizations.
         Options:
-        - "default": Auto-select based on target (default)
-        - "sella": SELLA optimizer
-        - "lbfgs": L-BFGS optimizer
-        - "bfgs": BFGS optimizer
-        - "fire": FIRE optimizer
-        - "trust-krylov": Trust-region with Krylov subspace
-        - "trust-ncg": Trust-region with nonlinear CG
-        - "trust-exact": Trust-region with exact Hessian (TS: dense RS-P-RFO)
-        - "newton-cg": Newton-CG method (minima only; not supported for target="ts")
-        - "rfo": Rational Function Optimization for TS
+
+        - ``default``: Auto-select based on target (default)
+        - ``sella``: SELLA optimizer
+        - ``lbfgs``: L-BFGS optimizer
+        - ``bfgs``: BFGS optimizer
+        - ``fire``: FIRE optimizer
+        - ``trust-krylov``: Trust-region with Krylov subspace
+        - ``trust-ncg``: Trust-region with nonlinear CG
+        - ``trust-exact``: Trust-region with exact Hessian (TS: dense RS-P-RFO)
+        - ``newton-cg``: Newton-CG method (minima only; not supported for target="ts")
+        - ``rfo``: Rational Function Optimization for TS
     optimizer_kwargs : dict[str, Any], optional
         Keyword arguments forwarded to the local optimizer.
     strategy : str, optional, default "local"
         Strategy type for optimization. Options:
-        - "local": Direct local optimization
-        - "neb": Nudged Elastic Band
-        - "cineb": Climbing Image NEB
-        - "interpolate": Path interpolation only
-        - "growing_string": Growing string method
-        - "irc": Intrinsic Reaction Coordinate
+
+        - ``local``: Direct local optimization
+        - ``neb``: Nudged Elastic Band
+        - ``cineb``: Climbing Image NEB
+        - ``interpolate``: Path interpolation only
+        - ``growing_string``: Growing string method
+        - ``irc``: Intrinsic Reaction Coordinate
     target : str, optional, default "minima"
         Target type for optimization. Options:
-        - "minima": Find local minimum
-        - "ts": Find transition state
-        - "path": Find reaction pathway
+
+        - ``minima``: Find local minimum
+        - ``ts``: Find transition state
+        - ``path``: Find reaction pathway
     ts_kwargs : dict[str, Any], optional
         Keyword arguments forwarded to transition state optimizers.
     constraints : str or list or dict, optional
         Constraint specification. Can be:
-        - String: "fix 0 1 2" (fix atoms 0, 1, 2)
-        - List: [FixAtoms(indices=[0, 1, 2])]
-        - Dict: {"fix": [0, 1, 2]}
+
+        - String: ``"fix 0 1 2"`` (fix atoms 0, 1, 2)
+        - List: ``[FixAtoms(indices=[0, 1, 2])]``
+        - Dict: ``{"fix": [0, 1, 2]}``
     initial_hessian : np.ndarray, optional
         Initial Hessian matrix for optimization (3N x 3N).
     verbose : int, default 1
@@ -337,13 +342,14 @@ class Explorer:
         -------
         dict[str, Atoms | list[Atoms] | bool | int | float | str]
             Standardized result dictionary containing:
-            - optimized_atoms: Optimized structure(s) (Atoms or list[Atoms])
-            - strategy: Strategy name used (str)
-            - converged: Whether optimization converged (bool)
-            - steps_taken: Number of optimization steps (int)
-            - frequency_analysis: Frequency analysis results (dict, optional)
-            - is_minimum/is_ts: Validation results (bool, optional)
-            - free_energy_correction: Free energy correction in eV (float, optional)
+
+            - ``optimized_atoms``: Optimized structure(s) (Atoms or list[Atoms])
+            - ``strategy``: Strategy name used (str)
+            - ``converged``: Whether optimization converged (bool)
+            - ``steps_taken``: Number of optimization steps (int)
+            - ``frequency_analysis``: Frequency analysis results (dict, optional)
+            - ``is_minimum`` / ``is_ts``: Validation results (bool, optional)
+            - ``free_energy_correction``: Free energy correction in eV (float, optional)
             - Additional strategy-specific metadata
 
         Examples
@@ -420,11 +426,12 @@ class Explorer:
         ----------
         filename : str or Path
             Path to geometry file. Supported formats:
-            - .xyz: Extended XYZ format
-            - .cif: Crystallographic Information File
-            - .pdb: Protein Data Bank format
-            - .vasp: VASP POSCAR format
-            - .json: ASE JSON format
+
+            - ``.xyz``: Extended XYZ format
+            - ``.cif``: Crystallographic Information File
+            - ``.pdb``: Protein Data Bank format
+            - ``.vasp``: VASP POSCAR format
+            - ``.json``: ASE JSON format
         backend : str, default "uma"
             Calculator backend to use (see Explorer.__init__ for options).
         model_name : str, optional
@@ -597,21 +604,22 @@ class Explorer:
         -------
         dict[str, list[float] | float | dict[str, Any] | str | int | np.ndarray]
             Dictionary containing:
-            - frequencies: Vibrational frequencies in cm⁻¹ (list[float])
-            - all_frequencies: All frequencies including trans/rot modes (list[float])
-            - normal_modes: Normal mode vectors (list[float])
-            - zero_point_energy: Zero-point energy in eV (float)
-            - thermodynamic_properties: Thermodynamic data (dict[str, Any])
-            - ts_analysis: Transition state analysis (dict[str, Any])
-            - minima_analysis: Minima analysis (dict[str, Any])
-            - is_ts: Whether structure is a transition state (bool)
-            - is_minimum: Whether structure is a minimum (bool)
-            - method_used: Hessian calculation method (str)
-            - delta: Finite difference step size (float)
-            - temperature: Temperature for thermodynamic properties (float)
-            - n_atoms: Number of atoms (int)
-            - indices: Atom indices included (list[int])
-            - hessian: Hessian matrix (np.ndarray, optional)
+
+            - ``frequencies``: Vibrational frequencies in cm⁻¹ (list[float])
+            - ``all_frequencies``: All frequencies including trans/rot modes (list[float])
+            - ``normal_modes``: Normal mode vectors (list[float])
+            - ``zero_point_energy``: Zero-point energy in eV (float)
+            - ``thermodynamic_properties``: Thermodynamic data (dict[str, Any])
+            - ``ts_analysis``: Transition state analysis (dict[str, Any])
+            - ``minima_analysis``: Minima analysis (dict[str, Any])
+            - ``is_ts``: Whether structure is a transition state (bool)
+            - ``is_minimum``: Whether structure is a minimum (bool)
+            - ``method_used``: Hessian calculation method (str)
+            - ``delta``: Finite difference step size (float)
+            - ``temperature``: Temperature for thermodynamic properties (float)
+            - ``n_atoms``: Number of atoms (int)
+            - ``indices``: Atom indices included (list[int])
+            - ``hessian``: Hessian matrix (np.ndarray, optional)
 
         """
         from famex.analysis.frequency import FrequencyAnalysis

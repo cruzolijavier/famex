@@ -77,8 +77,7 @@ See [README.md](https://github.com/rlaplaza-lab/famex#readme) for the full backe
 All commands support these common options:
 
 ```{list-table}
-:class: global-options-table
-:widths: 20 10 70
+:class: options-table
 :header-rows: 1
 
 * - Option
@@ -144,7 +143,7 @@ Optimize molecular structures to find energy minima.
 #### Options
 
 ```{list-table}
-:class: fit-table nowrap-col2
+:class: options-table
 :header-rows: 1
 
 * - Option
@@ -202,7 +201,7 @@ Find and optimize transition state structures.
 #### Options
 
 ```{list-table}
-:class: fit-table nowrap-col2
+:class: options-table
 :header-rows: 1
 
 * - Option
@@ -281,7 +280,7 @@ Generate and optimize reaction pathways.
 #### Options
 
 ```{list-table}
-:class: fit-table nowrap-col2
+:class: options-table
 :header-rows: 1
 
 * - Option

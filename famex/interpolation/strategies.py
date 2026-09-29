@@ -5,11 +5,12 @@ reaction pathways between molecular structures. Each strategy implements
 a different approach to interpolating between start and end coordinates.
 
 Available strategies:
-- linear: Simple linear interpolation between coordinates
-- geodesic: Distance-preserving interpolation with bond length refinement
-- idpp: Image-Dependent Pair Potential interpolation
-- quadratic: Quadratic curve fitting through start, midpoint, and end
-- spline: Cubic spline interpolation for smooth pathways
+
+- ``linear``: Simple linear interpolation between coordinates
+- ``geodesic``: Distance-preserving interpolation with bond length refinement
+- ``idpp``: Image-Dependent Pair Potential interpolation
+- ``quadratic``: Quadratic curve fitting through start, midpoint, and end
+- ``spline``: Cubic spline interpolation for smooth pathways
 """
 
 from abc import ABC, abstractmethod

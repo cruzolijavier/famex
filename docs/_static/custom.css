@@ -8,22 +8,49 @@
 .fit-table col {
     width: auto !important;
 }
-.fit-table td:nth-child(1),
-.fit-table th:nth-child(1) {
+.rst-content .wy-table-responsive table.fit-table td:nth-child(1),
+.rst-content .wy-table-responsive table.fit-table th:nth-child(1),
+.rst-content table.fit-table td:nth-child(1) code {
     white-space: nowrap;
 }
-.fit-table.nowrap-col2 td:nth-child(2),
-.fit-table.nowrap-col2 th:nth-child(2) {
+.rst-content .wy-table-responsive table.fit-table.nowrap-col2 td:nth-child(2),
+.rst-content .wy-table-responsive table.fit-table.nowrap-col2 th:nth-child(2) {
     white-space: nowrap;
 }
 
-/* Global Options & Output Files table: Option column widened, Default column
-   narrowed, using the :widths: proportions set on the list-table directive.
-   Default and Description wrap onto multiple lines instead of overflowing;
-   the row simply grows taller when that happens. */
-.global-options-table {
+/* All tables: wrap cell text (and inline code) onto several lines instead of
+   letting it run past the cell border. sphinx_rtd_theme forces
+   `white-space: nowrap` on cells inside .wy-table-responsive and on inline
+   code, so both are overridden here. */
+.rst-content .wy-table-responsive table.docutils td,
+.rst-content .wy-table-responsive table.docutils th {
+    white-space: normal;
+}
+.rst-content table.docutils td code,
+.rst-content table.docutils th code {
+    white-space: normal;
+    overflow-wrap: break-word;
+}
+
+/* CLI option tables in USER_GUIDE.md (Global Options, Minima, TS, Path):
+   identical column widths in every table. The Option column is sized to fit
+   the longest option (--force-finite-diff-hessian) on one line; Default is
+   narrow and Description takes the remaining width. */
+.rst-content table.options-table {
     width: 100%;
     table-layout: fixed;
+}
+.rst-content table.options-table th:nth-child(1) {
+    width: 15em;
+}
+.rst-content table.options-table th:nth-child(2) {
+    width: 9em;
+}
+.rst-content table.options-table td {
+    overflow-wrap: break-word;
+}
+.rst-content table.options-table td:nth-child(1) code {
+    white-space: nowrap;
 }
 
 /* API Reference "Parameters" sections (Napoleon/numpydoc field lists):

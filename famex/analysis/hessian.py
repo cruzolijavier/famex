@@ -56,6 +56,7 @@ class CalculatorProtocol(Protocol):
 
     Any object that can be assigned to ``atoms.calc`` and provides
     ``get_forces()`` method is compatible. This includes:
+
     - FAMEX calculators (BasePotential subclasses)
     - ASE Calculator instances
     - Any object with compatible interface
@@ -91,10 +92,11 @@ class HessianCalculator:
     atom 1 x,y,z, ...).
 
     Available finite difference methods:
-    - 'forward' (2-point): Fast, 1st order accuracy, requires N+1 calculations
-    - 'central' (3-point): Standard choice, 2nd order accuracy, requires 2N+1 calculations
-    - '5point': High accuracy, 4th order accuracy, requires 4N+1 calculations
-    - '7point': Very high accuracy, 6th order accuracy, requires 6N+1 calculations
+
+    - ``forward`` (2-point): Fast, 1st order accuracy, requires N+1 calculations
+    - ``central`` (3-point): Standard choice, 2nd order accuracy, requires 2N+1 calculations
+    - ``5point``: High accuracy, 4th order accuracy, requires 4N+1 calculations
+    - ``7point``: Very high accuracy, 6th order accuracy, requires 6N+1 calculations
 
     Richardson extrapolation can improve accuracy by combining results from two
     different step sizes, effectively canceling leading error terms.
@@ -170,6 +172,7 @@ class HessianCalculator:
             Indices must be unique, within bounds, and valid atom indices.
         verbose : int
             Verbosity level for Hessian calculation output:
+
             - 0: Quiet (minimal output)
             - 1: Normal (default, shows progress)
             - 2: Verbose (detailed information)
@@ -558,11 +561,12 @@ class HessianCalculator:
         -------
         dict[str, float | int]
             Dictionary containing:
-            - n_force_evaluations: Number of force evaluations performed
-            - n_retries: Total number of retries attempted
-            - total_time: Total calculation time in seconds
-            - time_per_column: Average time per Hessian column in seconds
-            - time_per_force_eval: Average time per force evaluation in seconds
+
+            - ``n_force_evaluations``: Number of force evaluations performed
+            - ``n_retries``: Total number of retries attempted
+            - ``total_time``: Total calculation time in seconds
+            - ``time_per_column``: Average time per Hessian column in seconds
+            - ``time_per_force_eval``: Average time per force evaluation in seconds
 
         """
         return self._stats.copy()

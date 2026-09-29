@@ -5,6 +5,7 @@ using ASE (Atomic Simulation Environment) and SELLA optimizers combined with
 machine learning potentials.
 
 Key Features:
+
 - Minimum energy geometry optimization
 - Transition state searches
 - Reaction path optimization (NEB/CI-NEB)

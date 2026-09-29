@@ -395,9 +395,9 @@ class FrequencyAnalysis:
             - imaginary_frequencies: List of imaginary frequencies (list[float])
             - n_near_zero_frequencies: Number of near-zero frequencies (int)
             - all_frequencies: Vibrational frequencies (list[float])
-                Note: This contains vibrational frequencies (trans/rot modes removed).
-                For all frequencies including trans/rot, use the top-level all_frequencies
-                from explorer.calculate_frequencies().
+            Note: This contains vibrational frequencies (trans/rot modes removed).
+            For all frequencies including trans/rot, use the top-level all_frequencies
+            from explorer.calculate_frequencies().
             - threshold: Threshold used (float)
             - assessment: Assessment string (str)
 
@@ -465,9 +465,9 @@ class FrequencyAnalysis:
             - small_negative_frequencies: List of small negative frequencies (list[float])
             - n_near_zero_frequencies: Number of near-zero frequencies (int)
             - all_frequencies: Vibrational frequencies (list[float])
-                Note: This contains vibrational frequencies (trans/rot modes removed).
-                For all frequencies including trans/rot, use the top-level all_frequencies
-                from explorer.calculate_frequencies().
+            Note: This contains vibrational frequencies (trans/rot modes removed).
+            For all frequencies including trans/rot, use the top-level all_frequencies
+            from explorer.calculate_frequencies().
             - threshold: Threshold used (float)
             - small_negative_cutoff: Small negative cutoff used (float)
             - assessment: Assessment string (str)
