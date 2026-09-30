@@ -1,3 +1,9 @@
+```{image} _static/FAMEX_logo.svg
+:alt: FAMEX logo
+:width: 480px
+:align: center
+```
+
 # FAMEX: Fast Mechanistic Explorer
 
 FAMEX provides a unified interface for molecular geometry optimization using
