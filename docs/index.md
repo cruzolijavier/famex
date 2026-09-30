@@ -2,6 +2,7 @@
 :alt: FAMEX logo
 :width: 480px
 :align: center
+:class: home-logo
 ```
 
 # FAMEX: Fast Mechanistic Explorer

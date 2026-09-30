@@ -85,3 +85,9 @@ dl.field-list > dd ul {
 dl.field-list > dd ul > li {
     margin: 0.4em 0;
 }
+
+/* Logo at the top of the home page (index.md): leave some room between it
+   and the page title below. */
+.rst-content img.home-logo {
+    margin-bottom: 2.5em;
+}
